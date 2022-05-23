@@ -20,8 +20,8 @@ function App() {
         </nav>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/products/:id" element={<ProductDetails />} />
+          <Route path="/about/*" element={<About />} />
+          <Route path="/products/:id/*" element={<ProductDetails />} />
           <Route path="/products" element={<Products />} />
           <Route path='/test' element={(
             <div>
@@ -52,4 +52,8 @@ export default App
 // 5) Redirect component is replaced with Navigate component
 // 6) useNavigate hook to programatically navigate user to particular page
 // e.g       <button onClick={() => navigate('/products')}>See our Products</button>
+
+// 7)Nested Route paths are now relative to parent route paths
+// i.e we dont need path="about/offers" we can just add path="offers" in about page and path="about/*" in app.js
+
 
