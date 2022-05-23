@@ -1,4 +1,5 @@
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Link, Navigate, Route, Routes } from 'react-router-dom'
+import { useState } from 'react'
 
 // pages
 import Home from './pages/Home'
@@ -7,6 +8,7 @@ import Products from './pages/Products'
 import ProductDetails from './pages/ProductDetails'
 
 function App() {
+  const [cartIsEmpty] = useState(false)
   return (
     <div className="App">
       <BrowserRouter>
@@ -27,6 +29,11 @@ function App() {
               <p>Heyy!!</p>
             </div>
           )} />
+          <Route path='/redirect' element={<Navigate to="/about" />} />
+          <Route
+            path='/checkout'
+            element={cartIsEmpty ? <Navigate to="/products" /> : <p>checkout</p>}
+          />
         </Routes>
       </BrowserRouter>
     </div>
@@ -40,4 +47,9 @@ export default App
 
 // 3) Each Route element should have element prop where output should be the jsx component to which the path is directing 
 // e.g           <Route path="/about" element={<About />} />
+
+// 4) We can also display direct jsx inside element={()} for desired path 
+// 5) Redirect component is replaced with Navigate component
+// 6) useNavigate hook to programatically navigate user to particular page
+// e.g       <button onClick={() => navigate('/products')}>See our Products</button>
 
